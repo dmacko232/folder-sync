@@ -44,7 +44,14 @@ def main() -> None:
         ]
     )
 
-    sync(args.source_path, args.replica_path, args.second_interval)
+    try:
+        success = sync(args.source_path, args.replica_path, args.second_interval)
+        if not success:
+            logging.error("Exiting program because of error during sync.")
+            sys.exit(1)
+    except Exception as e:
+        logging.error("Exiting program because of exception " + str(e))
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()

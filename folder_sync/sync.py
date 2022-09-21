@@ -36,10 +36,13 @@ def sync_folder(source_dir_path: str, replica_dir_path: str) -> None:
 def _sync_folder_copy_changes(source_dir_path: str, replica_dir_path: str) -> List[str]:
 
     def _copy(root: str, name: str, copy_func: Callable[[str, str], None], out_paths: List[str]) -> None:
-        source_path = os.path.join(root, name)
-        out_paths.append(source_path)
-        replica_path = build_path_with_diff_dir(source_path, source_dir_path, replica_dir_path)
-        copy_func(source_path, replica_path)
+        try:
+            source_path = os.path.join(root, name)
+            out_paths.append(source_path)
+            replica_path = build_path_with_diff_dir(source_path, source_dir_path, replica_dir_path)
+            copy_func(source_path, replica_path)
+        except Exception as e:
+            logging.error("Exception during copying file: " + str(e))
 
     walked_source_paths = []
     for root, dirs, fnames in os.walk(source_dir_path, topdown=True):
@@ -52,11 +55,14 @@ def _sync_folder_copy_changes(source_dir_path: str, replica_dir_path: str) -> Li
 def _sync_folder_delete_changes(source_dir_path: str, source_paths: Set[str], replica_dir_path: str) -> None:
 
     def _remove(root: str, name: str, remove_func: Callable) -> None:
-        replica_path = os.path.join(root, name)
-        source_path = build_path_with_diff_dir(replica_path, replica_dir_path, source_dir_path)
-        if source_path not in source_paths: # we havent seen the path
-            logging.info(f"REMOVE: {replica_path}.")
-            remove_func(replica_path)
+        try:
+            replica_path = os.path.join(root, name)
+            source_path = build_path_with_diff_dir(replica_path, replica_dir_path, source_dir_path)
+            if source_path not in source_paths: # we havent seen the path
+                logging.info(f"REMOVE: {replica_path}.")
+                remove_func(replica_path)
+        except Exception as e:
+            logging.error("Exception during removing file: " + str(e))
 
     for root, dirs, fnames in os.walk(replica_dir_path, topdown=False):
         for fname in fnames:
