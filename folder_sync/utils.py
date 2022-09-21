@@ -1,18 +1,6 @@
-# TODO description and documentation
-
 import hashlib
 import os
 from typing import Iterable
-
-# https://stackoverflow.com/questions/33135038/how-do-i-use-os-scandir-to-return-direntry-objects-recursively-on-a-directory
-def scantree(dir_path: str) -> Iterable[os.DirEntry]:
-
-    with os.scandir(dir_path) as dir_it:
-        for entry in dir_it:
-            if entry.is_dir(follow_symlinks=False):
-                yield from scantree(entry.path)  # see below for Python 2.x
-            else:
-                yield entry
 
 def build_path_with_diff_dir(input_path: str, input_dir_path: str, target_dir_path: str) -> str:
 

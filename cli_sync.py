@@ -1,5 +1,3 @@
-# TODO add description + README
-
 import argparse
 from fileinput import filename
 import logging
