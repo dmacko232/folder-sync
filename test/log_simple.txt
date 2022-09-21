@@ -1,0 +1,19 @@
+2022-09-21 18:04:18,207 [INFO] Syncing folder 1-th time.
+2022-09-21 18:04:18,208 [INFO] CREATE: file test/replica_simple/words.txt
+2022-09-21 18:04:18,208 [INFO] COPY: file content from test/source_simple/words.txt to test/replica_simple/words.txt
+2022-09-21 18:04:18,208 [INFO] CREATE: dir test/replica_simple/nested_empty_dir
+2022-09-21 18:04:18,208 [INFO] COPY: dir metadata from test/source_simple/nested_empty_dir to test/replica_simple/nested_empty_dir
+2022-09-21 18:04:18,208 [INFO] CREATE: dir test/replica_simple/nested_dir
+2022-09-21 18:04:18,209 [INFO] COPY: dir metadata from test/source_simple/nested_dir to test/replica_simple/nested_dir
+2022-09-21 18:04:18,209 [INFO] CREATE: dir test/replica_simple/nested_dir/nested_dir
+2022-09-21 18:04:18,209 [INFO] COPY: dir metadata from test/source_simple/nested_dir/nested_dir to test/replica_simple/nested_dir/nested_dir
+2022-09-21 18:04:18,209 [INFO] CREATE: file test/replica_simple/nested_dir/nested_dir/empty.txt
+2022-09-21 18:04:18,209 [INFO] COPY: file content from test/source_simple/nested_dir/nested_dir/empty.txt to test/replica_simple/nested_dir/nested_dir/empty.txt
+2022-09-21 18:04:28,220 [INFO] Syncing folder 2-th time.
+2022-09-21 18:04:28,221 [INFO] COPY: dir metadata from test/source_simple/nested_empty_dir to test/replica_simple/nested_empty_dir
+2022-09-21 18:04:28,222 [INFO] COPY: dir metadata from test/source_simple/nested_dir to test/replica_simple/nested_dir
+2022-09-21 18:04:28,223 [INFO] COPY: dir metadata from test/source_simple/nested_dir/nested_dir to test/replica_simple/nested_dir/nested_dir
+2022-09-21 18:04:38,232 [INFO] Syncing folder 3-th time.
+2022-09-21 18:04:38,233 [INFO] COPY: dir metadata from test/source_simple/nested_empty_dir to test/replica_simple/nested_empty_dir
+2022-09-21 18:04:38,233 [INFO] COPY: dir metadata from test/source_simple/nested_dir to test/replica_simple/nested_dir
+2022-09-21 18:04:38,233 [INFO] COPY: dir metadata from test/source_simple/nested_dir/nested_dir to test/replica_simple/nested_dir/nested_dir
