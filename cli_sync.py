@@ -1,5 +1,4 @@
 import argparse
-from fileinput import filename
 import logging
 import sys
 

@@ -6,6 +6,19 @@ import logging
 from folder_sync.utils import file_content_matches
 
 def copy_dir_without_content(source_path: str, target_path: str) -> None:
+    """
+    Copies directory without its content.
+
+    Note: Internally relies on shutil library a lot.
+    Note: Also takes care of changing copying metadata (os.stat).
+
+    Parameters
+    ------------
+    source_path: str
+        valid path to source dir
+    target_path: str
+        valid path to where copy the source dir
+    """
 
     if not os.path.isdir(target_path): # either not dir or doesnt exist
         if os.path.exists(target_path): # exists as file
@@ -21,6 +34,18 @@ def copy_dir_without_content(source_path: str, target_path: str) -> None:
         logging.info(f"COPY: dir metadata from {source_path} to {target_path}")
 
 def copy_file(source_path: str, target_path: str) -> None:
+    """
+    Copies regular file.
+
+    Note: Internally relies on shutil library a lot.
+
+    Parameters
+    ------------
+    source_path: str
+        valid path to source file
+    target_path: str
+        valid path to where copy the source file
+    """
 
     if not os.path.isfile(target_path): # either not file or doesnt exist
         if os.path.exists(target_path): # exists as dir
@@ -38,5 +63,5 @@ def copy_file(source_path: str, target_path: str) -> None:
     # NOTE: we could just check file content first and if its matching then check the stat of file
     # and in case file content matches but stat does not just copy stat using shutil.copystat()
     # however, I believe we can just for simplicity copy whole file in case stat differs
-    # this also saves us one possible file sequence scan in case
+    # this also saves us one possible file sequence scan in such case
 
